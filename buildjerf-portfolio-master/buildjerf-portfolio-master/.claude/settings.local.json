@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls -la \"/mnt/d/Documentos/01-projectFlow/03-toDeploy/portifolio build jerf/buildflow-portfolio\")",
+      "Read(//mnt/d/Documentos/01-projectFlow/03-toDeploy/portifolio build jerf/**)",
+      "WebFetch(domain:geiji-atelie.buildjerf.com)",
+      "WebFetch(domain:app1.buildjerf.com)",
+      "WebFetch(domain:app2.buildjerf.com)",
+      "WebFetch(domain:jerfsonsilva.github.io)",
+      "PowerShell(Copy-Item \"d:\\\\Documentos\\\\01-projectFlow\\\\03-toDeploy\\\\portifolio build jerf\\\\buildflow-portfolio\\\\public\\\\logos\\\\buildjerflogosimples.png\" -Destination \"d:\\\\Documentos\\\\01-projectFlow\\\\03-toDeploy\\\\portifolio build jerf\\\\buildflow-portfolio\\\\src\\\\app\\\\icon.png\" -Force)"
+    ]
+  }
+}

@@ -1,0 +1,108 @@
+name: Deploy portfolio to VPS (root slot)
+
+# Secrets: VPS_HOST, VPS_USER, VPS_SSH_KEY.
+# Paths and build: .github/deploy-subapp.json
+# Self-contained (no workflow_call) so it runs even before build-jerf-server publishes the reusable workflow.
+# Optional later: switch to jerfsonsilva/build-jerf-server/.github/workflows/deploy-subapp-reusable.yml@main
+# after that file exists on GitHub and access is configured.
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+env:
+  CONFIG_PATH: .github/deploy-subapp.json
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Load deploy config from JSON
+        run: |
+          python3 <<'PY'
+          import json, os, pathlib, secrets, sys
+
+          path = pathlib.Path(os.environ["CONFIG_PATH"])
+          if not path.is_file():
+              print(f"error::Config file not found: {path.resolve()}", file=sys.stderr)
+              sys.exit(1)
+
+          cfg = json.loads(path.read_text(encoding="utf-8"))
+          if not isinstance(cfg, dict):
+              print("error::Config root must be a JSON object", file=sys.stderr)
+              sys.exit(1)
+
+          allowed = {
+              "INFRA_PATH",
+              "SUBAPPS_ROOT",
+              "SUBAPP_ID",
+              "DEPLOY_SLOT",
+              "GIT_BRANCH",
+              "GIT_REMOTE_URL",
+              "BUILD_COMMAND",
+              "ARTIFACT_DIR",
+              "PUBLISH_MODE",
+              "OVERWRITE_SLOT_DIR",
+              "RECREATE_CONTAINER",
+              "SKIP_DOCKER",
+              "REQUIRE_INDEX_HTML",
+              "SSH_PORT",
+              "NODE_EXTRA_SOURCE",
+          }
+          unknown = set(cfg.keys()) - allowed
+          if unknown:
+              print(f"error::Unknown keys: {sorted(unknown)}", file=sys.stderr)
+              sys.exit(1)
+
+          required = ("INFRA_PATH", "SUBAPP_ID", "DEPLOY_SLOT", "BUILD_COMMAND", "ARTIFACT_DIR")
+          missing = [k for k in required if k not in cfg or cfg[k] in (None, "")]
+          if missing:
+              print(f"error::Missing or empty required keys: {missing}", file=sys.stderr)
+              sys.exit(1)
+
+          gh_env = pathlib.Path(os.environ["GITHUB_ENV"])
+          with gh_env.open("a", encoding="utf-8") as f:
+              for key, value in cfg.items():
+                  if value is None:
+                      continue
+                  text = str(value)
+                  delim = "CFG_" + secrets.token_hex(16)
+                  f.write(f"{key}<<{delim}\n{text}\n{delim}\n")
+          PY
+
+      - name: Run deploy script on VPS
+        uses: appleboy/ssh-action@v1.2.0
+        env:
+          INFRA_PATH: ${{ env.INFRA_PATH }}
+          SUBAPPS_ROOT: ${{ env.SUBAPPS_ROOT }}
+          SUBAPP_ID: ${{ env.SUBAPP_ID }}
+          DEPLOY_SLOT: ${{ env.DEPLOY_SLOT }}
+          GIT_BRANCH: ${{ env.GIT_BRANCH }}
+          GIT_REMOTE_URL: ${{ env.GIT_REMOTE_URL }}
+          BUILD_COMMAND: ${{ env.BUILD_COMMAND }}
+          ARTIFACT_DIR: ${{ env.ARTIFACT_DIR }}
+          PUBLISH_MODE: ${{ env.PUBLISH_MODE }}
+          OVERWRITE_SLOT_DIR: ${{ env.OVERWRITE_SLOT_DIR }}
+          RECREATE_CONTAINER: ${{ env.RECREATE_CONTAINER }}
+          SKIP_DOCKER: ${{ env.SKIP_DOCKER }}
+          REQUIRE_INDEX_HTML: ${{ env.REQUIRE_INDEX_HTML }}
+          NODE_EXTRA_SOURCE: ${{ env.NODE_EXTRA_SOURCE }}
+          NEXT_PUBLIC_WEB3FORMS_KEY: ${{ secrets.NEXT_PUBLIC_WEB3FORMS_KEY }}
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          port: ${{ env.SSH_PORT == '' && '22' || env.SSH_PORT }}
+          envs: INFRA_PATH,SUBAPPS_ROOT,SUBAPP_ID,DEPLOY_SLOT,GIT_BRANCH,GIT_REMOTE_URL,BUILD_COMMAND,ARTIFACT_DIR,PUBLISH_MODE,OVERWRITE_SLOT_DIR,RECREATE_CONTAINER,SKIP_DOCKER,REQUIRE_INDEX_HTML,NODE_EXTRA_SOURCE,NEXT_PUBLIC_WEB3FORMS_KEY
+          script_stop: true
+          script: |
+            set -euo pipefail
+            export INFRA_PATH SUBAPPS_ROOT SUBAPP_ID DEPLOY_SLOT GIT_BRANCH BUILD_COMMAND ARTIFACT_DIR
+            export PUBLISH_MODE OVERWRITE_SLOT_DIR RECREATE_CONTAINER SKIP_DOCKER REQUIRE_INDEX_HTML NODE_EXTRA_SOURCE
+            export NEXT_PUBLIC_WEB3FORMS_KEY
+            if [ -n "${GIT_REMOTE_URL:-}" ]; then export GIT_REMOTE_URL; fi
+            bash "${INFRA_PATH}/infra/scripts/deploy-subapp-from-server.sh"

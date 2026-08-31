@@ -1,0 +1,70 @@
+name: 🧪 Test SSH Connection
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test-connection:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🔍 Check VPS reachability
+        run: |
+          echo "Testing connection to VPS..."
+          echo "Host: ${{ secrets.VPS_HOST }}"
+          echo "User: ${{ secrets.VPS_USER }}"
+          
+          # Test network connectivity
+          if timeout 10 nc -zv ${{ secrets.VPS_HOST }} 22 2>&1; then
+            echo "✅ Port 22 is reachable"
+          else
+            echo "❌ Port 22 is NOT reachable"
+            exit 1
+          fi
+
+      - name: 🔐 Test SSH Authentication
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          port: 22
+          script_stop: true
+          script: |
+            echo "✅ SSH connection successful!"
+            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+            echo "🖥️  System Information:"
+            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+            echo "User: $(whoami)"
+            echo "Hostname: $(hostname)"
+            echo "OS: $(cat /etc/os-release | grep PRETTY_NAME | cut -d'"' -f2)"
+            echo "Working Directory: $(pwd)"
+            echo ""
+            echo "🔑 SSH Connection Details:"
+            echo "Client IP: $SSH_CLIENT"
+            echo ""
+            echo "📁 Home Directory Contents:"
+            ls -la ~/ | head -20
+            echo ""
+            echo "🚀 Checking deploy directories..."
+            if [ -d "/buildjerf" ]; then
+              echo "✅ /buildjerf exists"
+              ls -la /buildjerf/ 2>/dev/null || echo "⚠️  No permission to list /buildjerf"
+            else
+              echo "❌ /buildjerf does NOT exist"
+            fi
+            echo ""
+            echo "🎉 All checks passed!"
+
+      - name: 📋 Summary
+        if: success()
+        run: |
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo "✅ SSH Connection Test PASSED"
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo ""
+          echo "Your VPS is properly configured for GitHub Actions deployment!"
+          echo ""
+          echo "Next steps:"
+          echo "1. Run the main deploy workflow"
+          echo "2. Monitor the deployment logs"
+          echo "3. Check your site after deployment"

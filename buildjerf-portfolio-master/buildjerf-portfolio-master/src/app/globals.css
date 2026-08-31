@@ -1,0 +1,451 @@
+@import "tailwindcss";
+
+:root {
+  /* BuildJerf - Color Palette */
+  --bg-primary: #0B0F1A;
+  --bg-deep: #05070D;
+  --bg-alt: #111827;
+  --bg-light: #F8FAFC;
+  
+  --accent-blue: #1E90FF;
+  --accent-blue-strong: #0A66FF;
+  --accent-blue-light: #00BFFF;
+  
+  --accent-purple: #7B2FF7;
+  --accent-purple-vibrant: #A855F7;
+  --accent-purple-dark: #5B21B6;
+
+  --text-primary: #FFFFFF;
+  --text-dark: #0F172A;
+  --text-elegant: #C7D2FE;
+  --text-muted: #94A3B8;
+
+  --glow-blue: #38BDF8;
+  --glow-purple: #8B5CF6;
+
+  --background: var(--bg-primary);
+  --foreground: var(--text-primary);
+  
+  /* Inova Labs Colors */
+  --color-neon-blue: #00D9FF;
+  --color-neon-purple: #A855F7;
+  --color-deep-purple: #7C3AED;
+  --color-electric-blue: #3B82F6;
+  --color-bg-primary: #0A0A0F;
+  --color-bg-secondary: #13131A;
+  --color-text-secondary: #A0AEC0;
+  --color-text-muted: #718096;
+  --gradient-inova: linear-gradient(135deg, #00D9FF 0%, #A855F7 100%);
+}
+
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+
+@layer utilities {
+  .bg-gradient-tech {
+    background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-purple) 100%);
+  }
+
+  .text-gradient-tech {
+    background: linear-gradient(135deg, var(--accent-blue-light) 0%, var(--accent-purple-vibrant) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .glow-blue {
+    box-shadow: 0 0 20px rgba(56, 189, 248, 0.3), 0 0 60px rgba(56, 189, 248, 0.1);
+  }
+
+  .glow-purple {
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.3), 0 0 60px rgba(139, 92, 246, 0.1);
+  }
+
+  .glass {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-float-delayed {
+    animation: float 6s ease-in-out infinite;
+    animation-delay: 3s;
+  }
+
+  .animate-pulse-tech {
+    animation: pulseTech 4s ease-in-out infinite;
+  }
+
+  .animate-marquee {
+    animation: marquee 40s linear infinite;
+  }
+
+  .animate-marquee-slow {
+    animation: marquee 60s linear infinite;
+  }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+}
+
+@keyframes pulseTech {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-deep);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--bg-alt);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-blue);
+}
+
+/* ========================================
+   INOVA LABS - CUSTOM STYLES
+   ======================================== */
+
+/* Gradient Text for Inova Labs */
+.gradient-text {
+  background: var(--gradient-inova);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Glassmorphism Hover Effect */
+.glass-hover {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  transition: all 0.3s ease;
+}
+
+.glass-hover:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+/* Buttons Inova Labs */
+.btn-primary {
+  padding: 1rem 2rem;
+  border-radius: 9999px;
+  font-weight: 700;
+  font-size: 1.125rem;
+  transition: all 0.3s ease;
+  background: var(--gradient-inova);
+  box-shadow: 0 0 30px rgba(0, 217, 255, 0.3);
+}
+
+.btn-primary:hover {
+  box-shadow: 0 0 60px rgba(0, 217, 255, 0.4);
+  transform: translateY(-2px) scale(1.02);
+}
+
+.btn-secondary {
+  padding: 1rem 2rem;
+  border-radius: 9999px;
+  font-weight: 700;
+  font-size: 1.125rem;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.btn-secondary:hover {
+  border-color: var(--color-neon-blue);
+  box-shadow: 0 0 30px rgba(0, 217, 255, 0.2);
+}
+
+/* Mesh Background */
+.mesh-background {
+  position: relative;
+  overflow: hidden;
+}
+
+.mesh-background::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(at 0% 0%, rgba(0, 217, 255, 0.15) 0px, transparent 50%),
+              radial-gradient(at 100% 100%, rgba(168, 85, 247, 0.15) 0px, transparent 50%);
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* Blur Orbs */
+.blur-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.3;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.blur-orb-blue {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.3;
+  pointer-events: none;
+  z-index: 0;
+  background: var(--color-neon-blue);
+}
+
+.blur-orb-purple {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.3;
+  pointer-events: none;
+  z-index: 0;
+  background: var(--color-neon-purple);
+}
+
+/* Animations */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(0, 217, 255, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(0, 217, 255, 0.6);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Card Elevated */
+.card-elevated {
+  border-radius: 1.5rem;
+  background: #1A1A27;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* ========== Inovasix Landing Page Styles ========== */
+
+.bg-grid {
+  background-image: 
+    linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px);
+  background-size: 64px 64px;
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 0%, transparent 70%);
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 0%, transparent 70%);
+}
+
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.55;
+  will-change: transform;
+}
+
+.orb1 {
+  width: 640px;
+  height: 640px;
+  top: -220px;
+  left: -160px;
+  background: radial-gradient(circle at 30% 30%, #0087FF, transparent 70%);
+  animation: float1 22s ease-in-out infinite;
+}
+
+.orb2 {
+  width: 560px;
+  height: 560px;
+  top: 120px;
+  right: -200px;
+  background: radial-gradient(circle at 60% 40%, #B026FF, transparent 70%);
+  animation: float2 26s ease-in-out infinite;
+}
+
+.orb3 {
+  width: 520px;
+  height: 520px;
+  bottom: -260px;
+  left: 30%;
+  background: radial-gradient(circle at 50% 50%, #782CFF, transparent 70%);
+  animation: float3 30s ease-in-out infinite;
+  opacity: 0.35;
+}
+
+@keyframes float1 {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(60px, 80px); }
+}
+
+@keyframes float2 {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(-70px, 60px); }
+}
+
+@keyframes float3 {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(40px, -60px); }
+}
+
+.animate-gradient {
+  background-size: 200% 100%;
+  animation: gradShift 8s ease infinite;
+}
+
+@keyframes gradShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.glow-hover {
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), 
+              box-shadow 0.35s ease, 
+              border-color 0.35s ease;
+}
+
+.glow-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 0 1px rgba(120, 44, 255, 0.25), 
+              0 20px 60px -20px rgba(0, 135, 255, 0.45), 
+              0 20px 60px -25px rgba(176, 38, 255, 0.35);
+  border-color: rgba(176, 38, 255, 0.35);
+}
+
+.nav-link {
+  font-size: 14.5px;
+  font-weight: 600;
+  color: #BDBDBD;
+  transition: color 0.25s ease;
+  position: relative;
+}
+
+.nav-link:hover {
+  color: #fff;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0;
+  height: 1.5px;
+  background: linear-gradient(90deg, #0087FF, #B026FF);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.btn-primary {
+  background: linear-gradient(92deg, #0087FF, #782CFF 60%, #B026FF);
+  color: #fff;
+  box-shadow: 0 8px 30px -8px rgba(0, 135, 255, 0.5);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px) scale(1.015);
+  box-shadow: 0 14px 40px -8px rgba(176, 38, 255, 0.55);
+}
+
+.btn-ghost {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #fff;
+}
+
+.btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(176, 38, 255, 0.4);
+  transform: translateY(-2px);
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  filter: blur(6px);
+  transition: opacity 0.9s cubic-bezier(0.2, 0.7, 0.2, 1), 
+              transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1), 
+              filter 0.9s ease;
+}
+
+.reveal.in {
+  opacity: 1;
+  transform: none;
+  filter: blur(0);
+}
+
+.perspective-\[1400px\] {
+  perspective: 1400px;
+}
+
+/* Custom Scrollbar for Inovasix */
+.inovasix-page ::-webkit-scrollbar {
+  width: 9px;
+}
+
+.inovasix-page ::-webkit-scrollbar-track {
+  background: #020817;
+}
+
+.inovasix-page ::-webkit-scrollbar-thumb {
+  background: linear-gradient(#0087FF, #B026FF);
+  border-radius: 10px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .orb, .reveal, .glow-hover, .animate-gradient {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

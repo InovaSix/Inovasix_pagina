@@ -1,0 +1,16 @@
+{
+  "INFRA_PATH": "/buildjerf/build-jerf-server",
+  "SUBAPPS_ROOT": "/buildjerf/sub-apps",
+  "SUBAPP_ID": "buildjerf-portfolio",
+  "DEPLOY_SLOT": "root",
+  "GIT_BRANCH": "master",
+  "GIT_REMOTE_URL": "https://github.com/jerfsonsilva/buildjerf-portfolio.git",
+  "BUILD_COMMAND": "echo \"NEXT_PUBLIC_WEB3FORMS_KEY=$NEXT_PUBLIC_WEB3FORMS_KEY\" > .env && npm ci && npx prisma generate && npm run build",
+  "ARTIFACT_DIR": "out",
+  "PUBLISH_MODE": "symlink",
+  "OVERWRITE_SLOT_DIR": "true",
+  "RECREATE_CONTAINER": "true",
+  "SKIP_DOCKER": "false",
+  "REQUIRE_INDEX_HTML": "true",
+  "SSH_PORT": "22"
+}
