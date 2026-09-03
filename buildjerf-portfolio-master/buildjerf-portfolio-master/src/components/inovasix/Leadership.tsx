@@ -127,7 +127,7 @@ export default function Leadership() {
                   className="btn-primary px-7 py-3.5 rounded-xl font-bold text-sm flex items-center gap-2 transition-all duration-300"
                 >
                   <MessageCircle className="w-4 h-4" />
-                  Fale com Luiz
+                  Fale com Luis
                 </a>
               </div>
             </motion.div>
