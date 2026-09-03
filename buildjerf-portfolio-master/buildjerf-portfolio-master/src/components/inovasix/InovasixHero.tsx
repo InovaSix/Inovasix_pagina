@@ -1,13 +1,14 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { sitePath } from '@/lib/site';
 
 export default function InovasixHero() {
   return (
     <section className="relative overflow-hidden min-h-[640px] lg:min-h-[760px] flex items-center pt-20 pb-16" id="top">
       {/* Background Video */}
       <video
-        src="/videos/iNOVAsIX.mp4"
+        src={sitePath('/videos/iNOVAsIX.mp4')}
         className="absolute inset-0 w-full h-full object-cover"
         autoPlay
         loop

@@ -2,36 +2,37 @@
 
 import { motion } from 'framer-motion'
 import Image from 'next/image'
+import { sitePath } from '@/lib/site'
 
 const clients = [
   {
     name: 'Raízen',
-    logo: '/logos/raizen.svg',
+      logo: sitePath('/logos/raizen.svg'),
     category: 'Energia',
   },
   {
     name: 'Multiplan',
-    logo: '/logos/multiplan.svg',
+      logo: sitePath('/logos/multiplan.svg'),
     category: 'Varejo',
   },
   {
     name: 'Polícia Civil BA',
-    logo: '/logos/policia-civil-ba.svg',
+      logo: sitePath('/logos/policia-civil-ba.svg'),
     category: 'Governo',
   },
   {
     name: 'Hospital Sírio-Libanês',
-    logo: '/logos/sirio-libanes.png',
+      logo: sitePath('/logos/sirio-libanes.png'),
     category: 'Saúde',
   },
   {
     name: 'ShopFloor',
-    logo: '/logos/shopfloor.png',
+      logo: sitePath('/logos/shopfloor.png'),
     category: 'Indústria',
   },
   {
     name: 'AP Interactive',
-    logo: '/logos/ap-interactive.png',
+      logo: sitePath('/logos/ap-interactive.png'),
     category: 'Tecnologia',
   },
 ]

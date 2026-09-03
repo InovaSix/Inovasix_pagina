@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
+import { sitePath } from '@/lib/site';
 
 export default function LandingPage() {
   return (
@@ -17,7 +18,7 @@ export default function LandingPage() {
 
       <div className="relative z-10 flex flex-col items-center text-center px-8 max-w-[640px]">
         <Image
-          src="/logos/inovasix-icon.png"
+          src={sitePath('/logos/inovasix-icon.png')}
           alt="Inovasix6"
           width={72}
           height={72}

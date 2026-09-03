@@ -1,4 +1,4 @@
-# BuildFlow - Portfólio Inovador
+# Inovasix - Site institucional
 
 ## 🚀 Sobre o Projeto
 
@@ -106,39 +106,55 @@ Baseado no currículo de Jerfson Silva dos Santos:
 - **Polícia Civil da Bahia**: Sistema de inquéritos
 - **ShopFloor**: Motor fiscal
 
-## 🚀 Como Executar
+## Como executar localmente
 
 ### Pré-requisitos
-- Node.js 18+ 
-- npm ou yarn
+- Node.js 20 LTS ou superior
+- npm 10 ou superior
 
 ### Instalação
 ```bash
-# Clone o repositório
-git clone [url-do-repositorio]
-
-# Entre na pasta do projeto
-cd buildflow-portfolio
-
-# Instale as dependências
+# Na pasta que contém package.json
 npm install
 
-# Configure o banco de dados
+# Opcional: copie .env.example para .env.local e preencha as chaves
 npx prisma generate
-npx prisma db push
 
-# Execute o servidor de desenvolvimento
+# Inicie o servidor local
 npm run dev
 ```
+Abra http://localhost:3000.
 
-### Deploy
+Para testar a exportação estática localmente:
+```bash
+npm install
+npm run build
+npx serve out
+```
+
+## Deploy no GitHub Pages
+
+O workflow `.github/workflows/deploy-pages.yml` publica automaticamente a pasta `out` a cada push em `master`. No GitHub, ative **Settings > Pages > Source: GitHub Actions**.
+
+Como o repositório é um site de projeto, o endereço esperado é `https://jerfsonsilva.github.io/buildjerf-portfolio/`. A chave `NEXT_PUBLIC_WEB3FORMS_KEY` é opcional e deve ser cadastrada como secret do repositório.
+
+### Deploy alternativo no VPS
+
+O workflow `deploy.yml` continua reservado ao deploy existente no VPS.
+
 ```bash
 # Build para produção
 npm run build
 
-# Deploy no Vercel
+# Deploy no Vercel (alternativa)
 vercel --prod
 ```
+
+## Scripts
+
+- `npm run dev`: desenvolvimento local com Turbopack
+- `npm run build`: exportação estática para `out/`
+- `npm run lint`: verificação de lint
 
 ## 📁 Estrutura do Projeto
 

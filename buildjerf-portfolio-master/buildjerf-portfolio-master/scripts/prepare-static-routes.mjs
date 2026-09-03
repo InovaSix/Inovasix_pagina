@@ -17,6 +17,8 @@ if (!fs.existsSync(outDir)) {
   process.exit(1)
 }
 
+fs.writeFileSync(path.join(outDir, '.nojekyll'), '')
+
 const htmlFiles = fs
   .readdirSync(outDir)
   .filter((name) => name.endsWith('.html') && !SKIP_FILES.has(name))

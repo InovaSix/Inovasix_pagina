@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { MessageCircle, Menu, X, Sparkles, GraduationCap } from 'lucide-react';
+import { sitePath } from '@/lib/site';
 import ContactModal from './ContactModal';
 
 export default function InovasixNav() {
@@ -45,7 +46,7 @@ export default function InovasixNav() {
             {/* Logo */}
             <Link href="#top" className="flex items-center gap-3">
               <Image
-                src="/logos/inovasix-icon.png"
+                src={sitePath('/logos/inovasix-icon.png')}
                 alt="Inovasix6"
                 width={40}
                 height={40}

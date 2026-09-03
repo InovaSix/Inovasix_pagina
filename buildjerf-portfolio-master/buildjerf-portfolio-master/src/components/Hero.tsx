@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
+import { sitePath } from '@/lib/site'
 import {
   ArrowRight,
   Bot,
@@ -126,7 +127,7 @@ export default function Hero() {
                     WebkitMaskImage: 'none'
                   }}
                 >
-                  <source src="/video/video-logo-interativa.mp4" type="video/mp4" />
+                  <source src={sitePath('/video/video-logo-interativa.mp4')} type="video/mp4" />
                 </video>
 
                 {/* Overlays for total blending - reduced for mobile */}

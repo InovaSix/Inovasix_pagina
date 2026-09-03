@@ -2,31 +2,32 @@
 
 import { motion } from 'framer-motion'
 import { Plus } from 'lucide-react'
+import { sitePath } from '@/lib/site'
 
 const clients = [
   {
     name: 'Raízen',
-    logo: '/logos/raizen.png',
+     logo: sitePath('/logos/raizen.png'),
   },
   {
     name: 'Multiplan',
-    logo: '/logos/multiplan.png',
+     logo: sitePath('/logos/multiplan.png'),
   },
   {
     name: 'Polícia Civil BA',
-    logo: '/logos/policia-civil-ba.svg',
+     logo: sitePath('/logos/policia-civil-ba.svg'),
   },
   {
     name: 'Sírio-Libanês',
-    logo: '/logos/sirio-libanes.png',
+     logo: sitePath('/logos/sirio-libanes.png'),
   },
   {
     name: 'ShopFloor',
-    logo: '/logos/shopfloor.png',
+     logo: sitePath('/logos/shopfloor.png'),
   },
   {
     name: 'AP Interactive',
-    logo: '/logos/ap-interactive.png',
+     logo: sitePath('/logos/ap-interactive.png'),
   },
 ]
 
