@@ -1,14 +1,13 @@
-name: Deploy preview to GitHub Pages (QA)
+name: Deploy to GitHub Pages
 
-# Ambiente temporário de QA para a branch edsoninovasix.
-# NÃO substitui o deploy oficial da VPS (deploy.yml).
+# Publica a versão estática da main no GitHub Pages.
 # O projeto Next.js fica em buildjerf-portfolio-master/buildjerf-portfolio-master.
 # Publica o static export (pasta out) sob o subcaminho /Inovasix_pagina
 # no repositório InovaSix/Inovasix_pagina, via GitHub Pages Actions oficiais.
 
 on:
   push:
-    branches: [edsoninovasix]
+    branches: [main]
   workflow_dispatch:
 
 # Permissões exigidas pelo GitHub Pages via Actions.
@@ -19,7 +18,7 @@ permissions:
 
 # Garante que apenas um deploy do Pages rode por vez.
 concurrency:
-  group: pages-preview
+  group: pages
   cancel-in-progress: true
 
 env:
