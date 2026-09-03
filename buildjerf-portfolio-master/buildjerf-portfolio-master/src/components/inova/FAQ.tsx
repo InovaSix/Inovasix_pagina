@@ -33,7 +33,7 @@ const faqs = [
   {
     question: 'Quais tipos de projetos vocês analisam?',
     answer:
-      'SaaS, marketplaces, apps mobile, e-commerce, fintechs, edtechs, healthtechs e qualquer negócio digital. Projetos físicos ou offline têm análise limitada pois nossa IA é otimizada para negócios digitais escaláveis.',
+      'SaaS, marketplaces, apps mobile, e-commerce, fintechs, edtechs, healthtechs e qualquer negócio digital. Projetos físicos ou offline têm análise limitada, pois nossa IA é otimizada para negócios digitais escaláveis.',
   },
   {
     question: 'Como cancelo minha assinatura?',

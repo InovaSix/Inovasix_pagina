@@ -55,7 +55,7 @@ export default function WhyInovasix() {
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#0087FF]/[0.08] border border-[#0087FF]/25 text-[#0087FF] text-xs font-bold uppercase tracking-wider mb-6">
             <span className="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-[#0087FF] to-[#B026FF]" />
-            Por que a InovaSix6
+            Por que a InovaSix6?
           </div>
           <h2 className="text-4xl lg:text-5xl font-extrabold leading-tight mb-5">
             Nossos <span className="bg-gradient-to-r from-[#0087FF] via-[#782CFF] to-[#B026FF] bg-clip-text text-transparent">diferenciais</span>

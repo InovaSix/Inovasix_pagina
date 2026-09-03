@@ -73,6 +73,13 @@ export default function AnalysisReport({ formData, onClose, onUpgrade, emailWarn
     return 'Potencial Moderado'
   }
 
+  const scoreBreakdownLabels: Record<string, string> = {
+    viabilidadeTecnica: 'Viabilidade Técnica',
+    potencialMercado: 'Potencial de Mercado',
+    inovacao: 'Inovação',
+    competitividade: 'Competitividade',
+  }
+
   return (
     <div className="fixed inset-0 z-50 overflow-y-auto bg-black/90 backdrop-blur-md">
       <div className="min-h-screen px-4 py-12">
@@ -264,8 +271,8 @@ export default function AnalysisReport({ formData, onClose, onUpgrade, emailWarn
                   transition={{ delay: 0.8 + index * 0.1 }}
                 >
                   <div className="flex items-center justify-between mb-2">
-                    <span className="text-sm font-semibold capitalize">
-                      {key.replace(/([A-Z])/g, ' $1').trim()}
+                    <span className="text-sm font-semibold">
+                      {scoreBreakdownLabels[key] ?? key}
                     </span>
                     <span className="text-sm font-bold text-[--color-neon-blue]">{value}%</span>
                   </div>
