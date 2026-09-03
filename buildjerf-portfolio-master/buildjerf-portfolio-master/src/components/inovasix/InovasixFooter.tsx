@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { Linkedin, Instagram, Youtube, Mail } from 'lucide-react';
+import { sitePath } from '@/lib/site';
 
 export default function InovasixFooter() {
   return (
@@ -13,7 +14,7 @@ export default function InovasixFooter() {
           <div>
             <div className="flex items-center gap-2.5 mb-4">
               <Image
-                src="/logos/inovasix-icon.png"
+                  src={sitePath('/logos/inovasix-icon.png')}
                 alt="Inovasix6"
                 width={32}
                 height={32}

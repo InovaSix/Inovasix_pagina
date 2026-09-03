@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Award, Target, Users, Lightbulb, Linkedin, ChevronRight, Briefcase, GraduationCap } from 'lucide-react'
 import { useState } from 'react'
 import Image from 'next/image'
+import { sitePath } from '@/lib/site'
 
 export default function AboutUs() {
   const [selectedMember, setSelectedMember] = useState(0)
@@ -13,7 +14,7 @@ export default function AboutUs() {
       name: 'Diógenes Jardim',
       role: 'Diretor | InovaSix',
       subtitle: 'QA Lead | Qualidade de Software | Automação de Testes',
-      image: '/team/diogenes-jardim.jpg',
+        image: sitePath('/team/diogenes-jardim.jpg'),
       linkedin: 'https://www.linkedin.com/in/diogenes-jardim',
       bio: {
         intro: 'Sou Diretor da InovaSix, empresa especializada em soluções de tecnologia, onde atuo na definição de estratégias, desenvolvimento de soluções digitais e fortalecimento da cultura de qualidade de software.',
@@ -40,7 +41,7 @@ export default function AboutUs() {
       name: 'Edson Miranda Gomes de Almeida',
       role: 'Diretor de Infraestrutura e Operações Cloud',
       subtitle: 'QA Cloud | DevOps | SRE',
-      image: '/team/edson-miranda.jpg',
+        image: sitePath('/team/edson-miranda.jpg'),
       linkedin: 'https://www.linkedin.com/in/edson-miranda',
       bio: {
         intro: 'Especialista em Qualidade de Software, Automação, Infraestrutura Cloud, DevOps e Site Reliability Engineering (SRE), com formação em Análise e Desenvolvimento de Sistemas e pós-graduação em Cibersegurança.',
@@ -67,7 +68,7 @@ export default function AboutUs() {
       name: 'Bruno Avila',
       role: 'Software Quality & Security Consultant',
       subtitle: 'AppSec | DevSecOps | Quality Engineering',
-      image: '/team/bruno-avila.jpg',
+        image: sitePath('/team/bruno-avila.jpg'),
       linkedin: 'https://www.linkedin.com/in/bruno-avila',
       bio: {
         intro: 'Especialista em Qualidade, Automação e Segurança de Software, com formação em Análise e Desenvolvimento de Sistemas, pós-graduação em Engenharia de Software com ênfase em Qualidade e Testes, MBA em Gestão da Qualidade de Software e especialização em AppSec e DevSecOps.',

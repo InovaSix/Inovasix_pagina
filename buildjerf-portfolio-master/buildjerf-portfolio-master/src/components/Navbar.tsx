@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { Menu, X } from 'lucide-react'
 import Image from 'next/image'
+import { sitePath } from '@/lib/site'
 
 const navLinks = [
   { label: 'Home', href: '#' },
@@ -34,7 +35,7 @@ export default function Navbar() {
           <a href="#" className="flex items-center gap-2.5 group">
             <div className="relative">
               <Image
-                src="/logo.jpeg"
+                src={sitePath('/logo.jpeg')}
                 alt="Inovasistema"
                 width={40}
                 height={40}

@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { Github, Linkedin, Twitter, Mail } from 'lucide-react'
 import Image from 'next/image'
+import { sitePath } from '@/lib/site'
 
 const footerLinks = {
   Empresa: [
@@ -52,7 +53,7 @@ export default function Footer() {
             <div className="inline-flex items-center gap-3 mb-6">
               <div className="glass rounded-xl p-2 flex-shrink-0">
                 <Image
-                  src="/logo.jpeg"
+                  src={sitePath('/logo.jpeg')}
                   alt="Inovasistema"
                   width={48}
                   height={48}
