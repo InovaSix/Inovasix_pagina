@@ -1,7 +1,8 @@
 name: Deploy preview to GitHub Pages (QA)
 
 # Ambiente temporário de QA para a branch edsoninovasix.
-# NÃO substitui o deploy oficial da VPS (.github/workflows/deploy.yml).
+# NÃO substitui o deploy oficial da VPS (deploy.yml).
+# O projeto Next.js fica em buildjerf-portfolio-master/buildjerf-portfolio-master.
 # Publica o static export (pasta out) sob o subcaminho /Inovasix_pagina
 # no repositório InovaSix/Inovasix_pagina, via GitHub Pages Actions oficiais.
 
@@ -21,6 +22,9 @@ concurrency:
   group: pages-preview
   cancel-in-progress: true
 
+env:
+  PROJECT_DIR: buildjerf-portfolio-master/buildjerf-portfolio-master
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -33,14 +37,17 @@ jobs:
         with:
           node-version: 20
           cache: npm
+          cache-dependency-path: ${{ env.PROJECT_DIR }}/package-lock.json
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
 
       - name: Install dependencies
+        working-directory: ${{ env.PROJECT_DIR }}
         run: npm ci
 
       - name: Build (GitHub Pages)
+        working-directory: ${{ env.PROJECT_DIR }}
         env:
           GITHUB_PAGES: "true"
           NEXT_PUBLIC_BASE_PATH: /Inovasix_pagina
@@ -50,7 +57,7 @@ jobs:
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: out
+          path: buildjerf-portfolio-master/buildjerf-portfolio-master/out
 
   deploy:
     needs: build
