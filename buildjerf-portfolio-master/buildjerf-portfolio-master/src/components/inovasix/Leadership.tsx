@@ -39,7 +39,7 @@ export default function Leadership() {
               <div className="relative aspect-[4/5] rounded-2xl overflow-hidden border border-white/[0.08] shadow-[0_30px_80px_-20px_rgba(0,0,0,0.6)]">
                 {!imageError ? (
                   <Image
-                    src="/images/luis-antonio-ceo-inovasix.jpg"
+                    src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}/images/luis-antonio-ceo-inovasix.jpg`}
                     alt="Foto de Luis Antonio, CEO da Inovasix"
                     fill
                     sizes="(max-width: 1024px) 100vw, 360px"

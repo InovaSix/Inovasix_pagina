@@ -7,7 +7,7 @@ export default function InovasixHero() {
     <section className="relative overflow-hidden min-h-[640px] lg:min-h-[760px] flex items-center pt-20 pb-16" id="top">
       {/* Background Video */}
       <video
-        src="/videos/iNOVAsIX.mp4"
+        src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}/videos/iNOVAsIX.mp4`}
         className="absolute inset-0 w-full h-full object-cover"
         autoPlay
         loop
