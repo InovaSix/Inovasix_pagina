@@ -28,7 +28,7 @@ export default function InovasixNav() {
   const navLinks = [
     { href: '#top', label: 'Home' },
     { href: '#produtos', label: 'Soluções' },
-    { href: '#empresa', label: 'Empresa' },
+    { href: '#clientes', label: 'Nossos Clientes' },
     { href: '#contato', label: 'Contato' },
   ];
 

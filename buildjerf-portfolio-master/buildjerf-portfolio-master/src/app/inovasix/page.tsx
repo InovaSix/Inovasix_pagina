@@ -5,6 +5,7 @@ import InovasixHero from '@/components/inovasix/InovasixHero';
 import CurrentScenario from '@/components/inovasix/CurrentScenario';
 import QuemSomos from '@/components/inovasix/QuemSomos';
 import Leadership from '@/components/inovasix/Leadership';
+import Clients from '@/components/inovasix/Clients';
 import SmartCompanies from '@/components/inovasix/SmartCompanies';
 import IAAutomation from '@/components/inovasix/IAAutomation';
 import Integrations from '@/components/inovasix/Integrations';
@@ -55,6 +56,7 @@ export default function InovasixPage() {
         <CurrentScenario />
         <QuemSomos />
         <Leadership />
+        <Clients />
         <SmartCompanies />
         <WhyInovasix />
         <RealGuarantees />
